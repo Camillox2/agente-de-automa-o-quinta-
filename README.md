@@ -1,97 +1,115 @@
-Aqui está a estrutura do arquivo `README.md` ideal para o seu repositório Git, dividindo as responsabilidades do trabalho de forma equilibrada entre você e o Maurício, cobrindo todas as exigências do documento.
+# Agente de Atendimento Acadêmico com Node-RED
 
----
+Projeto desenvolvido para o trabalho avaliativo de Engenharia de Prompt.
 
-# 🤖 Trabalho A2 - Engenharia de Prompt: Agente de Automação Node-RED
+O objetivo é demonstrar um agente de automação simples, funcional e explicável, utilizando o Node-RED como orquestrador. O agente recebe uma pergunta por formulário HTML, processa a entrada com regras condicionais e retorna uma resposta automática em HTML.
 
-Repositório voltado ao desenvolvimento do agente de automação residencial/acadêmica utilizando o Node-RED como orquestrador principal. O objetivo do projeto é consolidar o conceito de agente automático funcional, capaz de tomar decisões com base em gatilhos específicos.
+## O que foi construído
 
-**📅 Data de Entrega:** 28/05/2026 via Black Board 
+Este repositório contém a parte de desenvolvimento e arquitetura do agente:
 
----
+- Interface de entrada em HTML.
+- Fluxo completo do Node-RED exportado em JSON.
+- Rota HTTP para abertura do formulário.
+- Rota HTTP para recebimento da pergunta.
+- Nó `function` com regras condicionais `if / else`.
+- Resposta automática formatada em HTML.
+- Relatório descritivo do funcionamento e das alterações realizadas.
 
-## 👥 Divisão da Equipe e Responsabilidades
+## Arquivos do projeto
 
-Como a estrutura original da atividade previa até 5 integrantes , as atribuições de documentação, lógica, interface e testes foram condensadas e distribuídas igualmente entre os 2 membros da equipe:
+```text
+.
+├── index.html
+├── fluxo-node-red.json
+├── README.md
+├── CHANGELOG.md
+├── docs/
+│   └── relatorio-desenvolvimento-arquitetura.md
+└── prints/
+    └── .gitkeep
+```
 
-| Integrante | Frentes de Atuação | Entregáveis Associados |
-| --- | --- | --- |
-| **Você** | Lógica do Agente + Formulário/Entrada 
+## Como funciona
 
- | Fluxo do Node-RED (JSON) e arquivo HTML 
+O fluxo segue esta lógica:
 
- |
-| **Maurício** | Testes/Validação + Documentação 
+```text
+Usuário acessa o formulário
+        ↓
+Envia uma pergunta
+        ↓
+Node-RED recebe via HTTP POST
+        ↓
+Nó function analisa a pergunta
+        ↓
+Regras if/else identificam a categoria
+        ↓
+Node-RED retorna uma resposta automática em HTML
+```
 
- | Relatório curto (PDF ou DOC) e Prints de funcionamento 
+## Rotas do Node-RED
 
- |
+### `GET /`
 
----
+Exibe o formulário HTML para o usuário digitar a pergunta.
 
-## 🛠️ Detalhamento das Tarefas
+### `POST /pergunta`
 
-### 🫵 Suas Tarefas (Desenvolvimento e Arquitetura)
+Recebe o campo `pergunta`, processa a lógica do agente e retorna a resposta automática.
 
-* 
-**Construção da Interface de Entrada:** Desenvolver o formulário HTML simples para a captura e envio de dados/perguntas ao agente.
+## Categorias identificadas pelo agente
 
+O agente classifica perguntas nas seguintes categorias:
 
-* 
-**Configuração do Orquestrador:** Implementar os nós de entrada e resposta HTTP (`http in` e `http response`) dentro do ecossistema Node-RED.
+- Prazo e entrega.
+- Documentação.
+- Horários e apresentação.
+- Funcionamento do agente.
+- Critérios de avaliação.
+- Outros.
 
+## Exemplos de perguntas
 
-* 
-**Implementação da Lógica Central:** Programar as regras condicionais (`if / else`) nos nós de função para processar as tomadas de decisão automática do sistema.
+```text
+Qual é o prazo de entrega?
+Quais documentos preciso entregar?
+Como funciona o agente?
+Quando será a apresentação?
+Quais são os critérios de avaliação?
+```
 
+## Como importar o fluxo no Node-RED
 
-* 
-**Exportação do Projeto:** Gerar o arquivo JSON final contendo todo o fluxo estruturado para anexar à entrega.
+1. Abra o Node-RED.
+2. Clique no menu superior direito.
+3. Selecione `Import`.
+4. Cole o conteúdo do arquivo `fluxo-node-red.json`.
+5. Clique em `Import`.
+6. Clique em `Deploy`.
+7. Acesse:
 
+```text
+http://localhost:1880/
+```
 
+## Como testar
 
-### 👦 Tarefas do Maurício (Qualidade e Relatórios)
+1. Abra `http://localhost:1880/`.
+2. Digite uma pergunta no formulário.
+3. Clique em `Enviar pergunta`.
+4. Confira a categoria identificada e a resposta automática.
 
-* 
-**Testes e Validação de Fluxo:** Garantir que o agente funcione corretamente do início ao fim, validando a consistência das respostas.
+## Observação sobre o arquivo HTML
 
+O arquivo `index.html` também foi salvo separadamente para a entrega acadêmica. O mesmo conteúdo está embutido no fluxo do Node-RED, permitindo que o formulário seja acessado diretamente pela rota `GET /`.
 
-* 
-**Geração de Evidências:** Capturar prints de tela que comprovem o comportamento ideal do agente mediante diferentes tipos de inputs.
+## Responsabilidade de desenvolvimento e arquitetura
 
+Esta parte cobre:
 
-* 
-**Redação do Relatório Técnico:** Produzir o documento detalhando o objetivo do agente, a dinâmica de funcionamento e as regras condicionais criadas.
-
-
-* 
-**Revisão de Critérios:** Validar a conformidade do projeto com os pesos da avaliação (Funcionamento, Clareza, Organização e Relato de Equipe).
-
-
-
----
-
-## 📋 Critérios de Sucesso e Foco
-
-O desenvolvimento do nosso projeto seguirá estritamente as diretrizes da avaliação:
-
-* 
-**O que Importa:** O comportamento autônomo do agente (Gatilho ➡️ Decisão Automática ➡️ Ação/Resposta).
-
-
-* 
-**O que NÃO é Prioridade:** Interfaces excessivamente avançadas, estética polida ou uso obrigatório de IA generativa.
-
-
-
----
-
-## 📦 Checklist de Envio
-
-* [ ] `fluxo.json` (Exportação do Node-RED) 
-
-
-* [ ] `index.html` (Formulário de Entrada) 
-
-
-* [ ] `relatorio.pdf` (Relatório Curto com Prints)
+- Construção da interface de entrada.
+- Configuração do orquestrador no Node-RED.
+- Implementação da lógica central de decisão automática.
+- Exportação do fluxo final em JSON.
+- Documentação das alterações realizadas.
