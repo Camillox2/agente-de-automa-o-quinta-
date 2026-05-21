@@ -1,0 +1,106 @@
+[
+  {
+    "id": "tab_agente_academico",
+    "type": "tab",
+    "label": "Agente de Atendimento Acadêmico",
+    "disabled": false,
+    "info": "Fluxo criado para o trabalho avaliativo A2. Recebe perguntas via formulário HTML, processa com regras if/else e retorna resposta automática."
+  },
+  {
+    "id": "http_get_form",
+    "type": "http in",
+    "z": "tab_agente_academico",
+    "name": "GET / - Formulário HTML",
+    "url": "/",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 170,
+    "y": 100,
+    "wires": [
+      [
+        "template_form"
+      ]
+    ]
+  },
+  {
+    "id": "template_form",
+    "type": "template",
+    "z": "tab_agente_academico",
+    "name": "Página do formulário",
+    "field": "payload",
+    "fieldType": "msg",
+    "format": "handlebars",
+    "syntax": "mustache",
+    "template": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>Agente de Atendimento Acadêmico</title>\n  <style>\n    :root {\n      --bg: #f4f7fb;\n      --card: #ffffff;\n      --text: #172033;\n      --muted: #5f6b7a;\n      --primary: #0f4c81;\n      --primary-dark: #0a355c;\n      --border: #d9e2ef;\n    }\n\n    * {\n      box-sizing: border-box;\n      font-family: Arial, Helvetica, sans-serif;\n    }\n\n    body {\n      margin: 0;\n      min-height: 100vh;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      background: linear-gradient(135deg, #f4f7fb 0%, #e8f1fb 100%);\n      color: var(--text);\n      padding: 24px;\n    }\n\n    main {\n      width: 100%;\n      max-width: 680px;\n      background: var(--card);\n      border: 1px solid var(--border);\n      border-radius: 18px;\n      padding: 32px;\n      box-shadow: 0 20px 50px rgba(15, 76, 129, 0.12);\n    }\n\n    .tag {\n      display: inline-block;\n      color: var(--primary);\n      background: #e8f1fb;\n      border: 1px solid #c8dbef;\n      padding: 8px 12px;\n      border-radius: 999px;\n      font-size: 13px;\n      font-weight: 700;\n      margin-bottom: 16px;\n    }\n\n    h1 {\n      margin: 0 0 12px;\n      font-size: 30px;\n      line-height: 1.2;\n    }\n\n    p {\n      margin: 0 0 24px;\n      color: var(--muted);\n      line-height: 1.6;\n    }\n\n    label {\n      display: block;\n      font-weight: 700;\n      margin-bottom: 8px;\n    }\n\n    textarea {\n      width: 100%;\n      min-height: 130px;\n      resize: vertical;\n      border: 1px solid var(--border);\n      border-radius: 14px;\n      padding: 14px;\n      font-size: 16px;\n      outline: none;\n    }\n\n    textarea:focus {\n      border-color: var(--primary);\n      box-shadow: 0 0 0 4px rgba(15, 76, 129, 0.10);\n    }\n\n    button {\n      width: 100%;\n      margin-top: 16px;\n      border: none;\n      border-radius: 14px;\n      padding: 14px 18px;\n      background: var(--primary);\n      color: #ffffff;\n      font-size: 16px;\n      font-weight: 700;\n      cursor: pointer;\n    }\n\n    button:hover {\n      background: var(--primary-dark);\n    }\n\n    .examples {\n      margin-top: 24px;\n      padding: 16px;\n      border: 1px solid var(--border);\n      border-radius: 14px;\n      background: #fbfdff;\n    }\n\n    .examples strong {\n      display: block;\n      margin-bottom: 8px;\n    }\n\n    .examples ul {\n      margin: 0;\n      padding-left: 18px;\n      color: var(--muted);\n      line-height: 1.7;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <span class=\"tag\">Node-RED + HTTP + Regras Condicionais</span>\n    <h1>Agente de Atendimento Acadêmico</h1>\n    <p>\n      Digite uma pergunta sobre prazo, documentos, horários, funcionamento ou entrega.\n      O agente analisará automaticamente o conteúdo e retornará uma resposta.\n    </p>\n\n    <form action=\"/pergunta\" method=\"POST\">\n      <label for=\"pergunta\">Pergunta para o agente</label>\n      <textarea\n        id=\"pergunta\"\n        name=\"pergunta\"\n        placeholder=\"Exemplo: qual é o prazo de entrega do trabalho?\"\n        required\n      ></textarea>\n      <button type=\"submit\">Enviar pergunta</button>\n    </form>\n\n    <section class=\"examples\">\n      <strong>Exemplos de perguntas</strong>\n      <ul>\n        <li>Qual é o prazo de entrega?</li>\n        <li>Quais documentos preciso entregar?</li>\n        <li>Como funciona o agente?</li>\n        <li>Quando será a apresentação?</li>\n      </ul>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "output": "str",
+    "x": 430,
+    "y": 100,
+    "wires": [
+      [
+        "http_resp_form"
+      ]
+    ]
+  },
+  {
+    "id": "http_resp_form",
+    "type": "http response",
+    "z": "tab_agente_academico",
+    "name": "Resposta HTML do formulário",
+    "statusCode": "",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    },
+    "x": 710,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "http_post_pergunta",
+    "type": "http in",
+    "z": "tab_agente_academico",
+    "name": "POST /pergunta - Entrada do agente",
+    "url": "/pergunta",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 200,
+    "y": 220,
+    "wires": [
+      [
+        "fn_processar_pergunta"
+      ]
+    ]
+  },
+  {
+    "id": "fn_processar_pergunta",
+    "type": "function",
+    "z": "tab_agente_academico",
+    "name": "Processar pergunta com if/else",
+    "func": "const entrada = msg.payload || {};\nconst perguntaOriginal =\n    entrada.pergunta ||\n    (msg.req && msg.req.body && msg.req.body.pergunta) ||\n    \"\";\n\nconst pergunta = String(perguntaOriginal).trim();\nconst texto = pergunta.toLowerCase();\n\nfunction contemAlgumaPalavra(palavras) {\n    return palavras.some((palavra) => texto.includes(palavra));\n}\n\nfunction escaparHtml(valor) {\n    return String(valor)\n        .replace(/&/g, \"&amp;\")\n        .replace(/</g, \"&lt;\")\n        .replace(/>/g, \"&gt;\")\n        .replace(/\"/g, \"&quot;\")\n        .replace(/'/g, \"&#039;\");\n}\n\nlet categoria = \"Outros\";\nlet resposta = \"Não encontrei uma resposta específica para sua pergunta. Tente perguntar sobre prazo, documentos, horários, entrega, nota ou funcionamento do agente.\";\n\nif (contemAlgumaPalavra([\"prazo\", \"entrega\", \"data\", \"quando\", \"blackboard\"])) {\n    categoria = \"Prazo e entrega\";\n    resposta = \"O prazo de entrega do trabalho é 28/05/2026 pelo Blackboard. A apresentação também será realizada conforme orientação da disciplina.\";\n} else if (contemAlgumaPalavra([\"documento\", \"documentos\", \"relatório\", \"relatorio\", \"arquivo\", \"json\", \"html\", \"print\", \"prints\"])) {\n    categoria = \"Documentação\";\n    resposta = \"Os entregáveis são: fluxo do Node-RED exportado em JSON, arquivo HTML do formulário e relatório curto com objetivo, funcionamento, regras implementadas e prints.\";\n} else if (contemAlgumaPalavra([\"horário\", \"horario\", \"aula\", \"apresentação\", \"apresentacao\"])) {\n    categoria = \"Horários e apresentação\";\n    resposta = \"A apresentação será feita na data definida pela disciplina, junto com a entrega do projeto. O grupo deve explicar o funcionamento do fluxo e a lógica de decisão.\";\n} else if (contemAlgumaPalavra([\"funciona\", \"funcionamento\", \"agente\", \"node-red\", \"node red\", \"fluxo\", \"orquestrador\"])) {\n    categoria = \"Funcionamento do agente\";\n    resposta = \"O agente recebe uma pergunta pelo formulário, envia os dados para o Node-RED, analisa palavras-chave em um nó function e retorna uma resposta automática em HTML.\";\n} else if (contemAlgumaPalavra([\"nota\", \"avaliação\", \"avaliacao\", \"critério\", \"criterio\", \"pontuação\", \"pontuacao\"])) {\n    categoria = \"Critérios de avaliação\";\n    resposta = \"A avaliação considera funcionamento correto do agente, clareza da lógica, uso correto do Node-RED, organização do fluxo, documentação e trabalho em equipe.\";\n}\n\nmsg.statusCode = 200;\nmsg.headers = {\n    \"Content-Type\": \"text/html; charset=utf-8\"\n};\n\nmsg.payload = `\n<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>Resposta do Agente</title>\n  <style>\n    * {\n      box-sizing: border-box;\n      font-family: Arial, Helvetica, sans-serif;\n    }\n\n    body {\n      margin: 0;\n      min-height: 100vh;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      background: linear-gradient(135deg, #f4f7fb 0%, #e8f1fb 100%);\n      color: #172033;\n      padding: 24px;\n    }\n\n    main {\n      width: 100%;\n      max-width: 720px;\n      background: #ffffff;\n      border: 1px solid #d9e2ef;\n      border-radius: 18px;\n      padding: 32px;\n      box-shadow: 0 20px 50px rgba(15, 76, 129, 0.12);\n    }\n\n    .tag {\n      display: inline-block;\n      color: #0f4c81;\n      background: #e8f1fb;\n      border: 1px solid #c8dbef;\n      padding: 8px 12px;\n      border-radius: 999px;\n      font-size: 13px;\n      font-weight: 700;\n      margin-bottom: 16px;\n    }\n\n    h1 {\n      margin: 0 0 20px;\n      font-size: 30px;\n    }\n\n    .card {\n      border: 1px solid #d9e2ef;\n      border-radius: 14px;\n      padding: 18px;\n      margin-bottom: 16px;\n      background: #fbfdff;\n    }\n\n    .label {\n      display: block;\n      color: #5f6b7a;\n      font-size: 13px;\n      font-weight: 700;\n      text-transform: uppercase;\n      letter-spacing: 0.04em;\n      margin-bottom: 6px;\n    }\n\n    p {\n      margin: 0;\n      line-height: 1.6;\n    }\n\n    a {\n      display: inline-block;\n      margin-top: 10px;\n      color: #ffffff;\n      background: #0f4c81;\n      text-decoration: none;\n      padding: 12px 16px;\n      border-radius: 12px;\n      font-weight: 700;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <span class=\"tag\">Resposta automática gerada pelo agente</span>\n    <h1>Resultado do atendimento</h1>\n\n    <section class=\"card\">\n      <span class=\"label\">Pergunta recebida</span>\n      <p>${escaparHtml(pergunta || \"Nenhuma pergunta informada\")}</p>\n    </section>\n\n    <section class=\"card\">\n      <span class=\"label\">Categoria identificada</span>\n      <p>${escaparHtml(categoria)}</p>\n    </section>\n\n    <section class=\"card\">\n      <span class=\"label\">Resposta do agente</span>\n      <p>${escaparHtml(resposta)}</p>\n    </section>\n\n    <a href=\"/\">Fazer nova pergunta</a>\n  </main>\n</body>\n</html>\n`;\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 220,
+    "wires": [
+      [
+        "http_resp_pergunta"
+      ]
+    ]
+  },
+  {
+    "id": "http_resp_pergunta",
+    "type": "http response",
+    "z": "tab_agente_academico",
+    "name": "Resposta automática em HTML",
+    "statusCode": "",
+    "headers": {},
+    "x": 790,
+    "y": 220,
+    "wires": []
+  }
+]
