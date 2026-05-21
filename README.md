@@ -1,68 +1,97 @@
-Sim, a divisão proposta cobre **100% das exigências, papéis e entregáveis** solicitados no documento do professor.
+Aqui está a estrutura do arquivo `README.md` ideal para o seu repositório Git, dividindo as responsabilidades do trabalho de forma equilibrada entre você e o Maurício, cobrindo todas as exigências do documento.
 
-Aqui está a validação de como cada ponto do enunciado foi completamente atendido na estrutura do README:
+---
 
-### 📑 1. Mapeamento de Papéis (O que a equipe deve fazer)
+# 🤖 Trabalho A2 - Engenharia de Prompt: Agente de Automação Node-RED
 
-O enunciado original propõe uma equipe de até 5 alunos dividida em 4 frentes de atuação. Na nossa divisão em dupla, todas as frentes foram totalmente absorvidas:
+Repositório voltado ao desenvolvimento do agente de automação residencial/acadêmica utilizando o Node-RED como orquestrador principal. O objetivo do projeto é consolidar o conceito de agente automático funcional, capaz de tomar decisões com base em gatilhos específicos.
 
-* 
-**Lógica do agente** (atribuída a você) 
+**📅 Data de Entrega:** 28/05/2026 via Black Board 
 
+---
 
-* 
-**Formulário / entrada** (atribuída a você) 
+## 👥 Divisão da Equipe e Responsabilidades
 
+Como a estrutura original da atividade previa até 5 integrantes , as atribuições de documentação, lógica, interface e testes foram condensadas e distribuídas igualmente entre os 2 membros da equipe:
 
-* 
-**Documentação** (atribuída ao Maurício) 
+| Integrante | Frentes de Atuação | Entregáveis Associados |
+| --- | --- | --- |
+| **Você** | Lógica do Agente + Formulário/Entrada 
 
+ | Fluxo do Node-RED (JSON) e arquivo HTML 
 
-* 
-**Testes e validação** (atribuída ao Maurício) 
+ |
+| **Maurício** | Testes/Validação + Documentação 
 
+ | Relatório curto (PDF ou DOC) e Prints de funcionamento 
 
+ |
 
-### 📦 2. Garantia dos Entregáveis (O que deve ser enviado)
+---
 
-O checklist final do README contém exatamente os três arquivos obrigatórios exigidos para o envio no Black Board:
+## 🛠️ Detalhamento das Tarefas
 
-* 
-**Fluxo do Node-RED exportado em JSON** 
-
-
-* 
-**Arquivo HTML** do formulário de entrada 
-
+### 🫵 Suas Tarefas (Desenvolvimento e Arquitetura)
 
 * 
-**Relatório curto (PDF ou DOC)** 
+**Construção da Interface de Entrada:** Desenvolver o formulário HTML simples para a captura e envio de dados/perguntas ao agente.
+
+
+* 
+**Configuração do Orquestrador:** Implementar os nós de entrada e resposta HTTP (`http in` e `http response`) dentro do ecossistema Node-RED.
+
+
+* 
+**Implementação da Lógica Central:** Programar as regras condicionais (`if / else`) nos nós de função para processar as tomadas de decisão automática do sistema.
+
+
+* 
+**Exportação do Projeto:** Gerar o arquivo JSON final contendo todo o fluxo estruturado para anexar à entrega.
 
 
 
-### 📝 3. Conteúdo Obrigatório do Relatório
+### 👦 Tarefas do Maurício (Qualidade e Relatórios)
 
-As tarefas do Maurício foram detalhadas para garantir que o relatório final não ignore nenhum dos tópicos obrigatórios listados pelo professor:
-
-* Objetivo do agente 
-
-
-* Como funciona 
+* 
+**Testes e Validação de Fluxo:** Garantir que o agente funcione corretamente do início ao fim, validando a consistência das respostas.
 
 
-* Regras implementadas 
+* 
+**Geração de Evidências:** Capturar prints de tela que comprovem o comportamento ideal do agente mediante diferentes tipos de inputs.
 
 
-* Prints do funcionamento 
+* 
+**Redação do Relatório Técnico:** Produzir o documento detalhando o objetivo do agente, a dinâmica de funcionamento e as regras condicionais criadas.
+
+
+* 
+**Revisão de Critérios:** Validar a conformidade do projeto com os pesos da avaliação (Funcionamento, Clareza, Organização e Relato de Equipe).
 
 
 
 ---
 
-### 💡 Só um ponto de atenção para a nota máxima (100%):
+## 📋 Critérios de Sucesso e Foco
 
-Existe um critério de avaliação que vale **10% da nota** chamado **"Trabalho em equipe (relato)"**.
+O desenvolvimento do nosso projeto seguirá estritamente as diretrizes da avaliação:
 
-Para garantir esses 10%, avise o Maurício para incluir uma seção bem simples de 1 ou 2 parágrafos no final do relatório em PDF, descrevendo exatamente como vocês se organizaram e confirmando que utilizaram este repositório Git para trabalhar em conjunto. O próprio texto do README já serve de base para ele redigir esse relato.
+* 
+**O que Importa:** O comportamento autônomo do agente (Gatilho ➡️ Decisão Automática ➡️ Ação/Resposta).
 
-Com isso, o escopo de vocês está totalmente blindado e pronto para buscar o grau A2!
+
+* 
+**O que NÃO é Prioridade:** Interfaces excessivamente avançadas, estética polida ou uso obrigatório de IA generativa.
+
+
+
+---
+
+## 📦 Checklist de Envio
+
+* [ ] `fluxo.json` (Exportação do Node-RED) 
+
+
+* [ ] `index.html` (Formulário de Entrada) 
+
+
+* [ ] `relatorio.pdf` (Relatório Curto com Prints)
